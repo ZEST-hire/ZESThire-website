@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobs Board - ZEST | Critical Infrastructure & Digital Facilities Roles in WA, QLD, NSW & VIC</title>
+<meta name="description" content="Live critical infrastructure, construction and data centre operations roles across WA, QLD, NSW and VIC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header class="nav">
+  <div class="nav-inner container">
+    <a href="index.html" class="logo"><img src="zest-logo-patch.png" alt="ZEST hire"></a>
+    <nav class="nav-links">
+      <a href="index.html#pillars">Roles we place</a>
+      <a href="index.html#why-recruiter">Why ZEST?</a>
+      <a href="index.html#growth">Market growth</a>
+      <a href="jobs.html">Jobs board</a>
+      <a href="index.html#signup">Join the crew</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#signup" class="btn btn-lime btn-sm"><span>Join the crew</span> 🦺</a>
+      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== JOBS HERO ========== -->
+<section class="jobs-hero container">
+  <span class="eyebrow">Live roles</span>
+  <h1>Find your next <span class="hl">shift, site or start date</span>.</h1>
+  <p class="lead" style="max-width:600px; margin:14px auto 0;">Every role below is real work across WA, QLD, NSW &amp; VIC's critical infrastructure and digital facilities boom. Can't see your specialty? Join the talent network and we'll come to you.</p>
+</section>
+
+<!-- ========== FILTERS ========== -->
+<section class="container section-tight">
+  <div class="filters-bar">
+    <div class="field">
+      <label for="job-search">Search</label>
+      <input id="job-search" type="text" placeholder="Search job title or keyword…">
+    </div>
+    <div class="field">
+      <label for="job-location">Location</label>
+      <select id="job-location">
+        <option value="all">All locations</option>
+        <option value="WA">Western Australia</option>
+        <option value="QLD">Queensland</option>
+        <option value="NSW">New South Wales</option>
+        <option value="VIC">Victoria</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="job-pillar">Category</label>
+      <select id="job-pillar">
+        <option value="all">All categories</option>
+        <option value="facilities">Critical Facilities</option>
+        <option value="projects">Projects &amp; Construction</option>
+        <option value="operations">Operations &amp; Service Delivery</option>
+      </select>
+    </div>
+    <a href="index.html#signup" class="btn btn-primary">Can't see your role? →</a>
+  </div>
+
+  <div class="results-meta">
+    <span id="results-count">Loading roles…</span>
+    <span style="opacity:.6;">Updated weekly</span>
+  </div>
+
+  <div class="jobs-grid" id="jobs-grid"></div>
+
+  <div class="empty-state" id="empty-state">
+    <h3>No roles match yet 🕵️</h3>
+    <p>Try clearing a filter, or join the talent network and we'll ping you when the right one lands.</p>
+    <a href="index.html#signup" class="btn btn-lime" style="margin-top:14px;">Join the talent network</a>
+  </div>
+
+  <div class="cta-strip">
+    <h3>Don't see the right role today?</h3>
+    <p style="opacity:.85; max-width:520px; margin:8px auto 18px;">New critical infrastructure and data centre roles land across WA, QLD, NSW &amp; VIC every week. Get on the list and we'll bring the right one to you.</p>
+    <a href="index.html#signup" class="btn btn-lime">Join the talent network →</a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:var(--cream);"><span class="dot"></span> ZEST<span class="logo-lower">hire</span></div>
+        <p>Recruitment for the people who build, run and keep critical infrastructure and digital facilities alive across WA, QLD, NSW &amp; VIC.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#pillars">Roles we place</a></li>
+          <li><a href="index.html#why-recruiter">Why ZEST?</a></li>
+          <li><a href="index.html#growth">Market growth</a></li>
+          <li><a href="jobs.html">Jobs board</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For employers</h4>
+        <ul>
+          <li><a href="mailto:hello@zesthire.com.au">Partner with ZEST</a></li>
+          <li><a href="mailto:hello@zesthire.com.au">Request a shortlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li>Perth, WA · Brisbane, QLD · Sydney, NSW · Melbourne, VIC</li>
+          <li><a href="mailto:hello@zesthire.com.au">hello@zesthire.com.au</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span class="js-year"></span> ZEST Recruitment.</span>
+      <span>Built for the people on the ground.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="jobs-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
