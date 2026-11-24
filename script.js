@@ -288,10 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 class="job-title">${attr(job.title)}</h3>
             <span class="job-pill ${pillarClass}">${pillarLabels[job.pillar]}</span>
           </div>
-          ${/bonus/i.test(job.salary + ' ' + job.summary) ? `<span class="job-bonus">🎁 ${attr((job.salary.match(/\$[\d,]+\s*sign-on bonus/i) || ['Sign-on bonus'])[0])}</span>` : ''}
+          ${/bonus/i.test(job.salary + ' ' + job.summary) ? `<span class="job-bonus">🎁 ${attr((job.salary.match(/\$[\d,]+\s*sign-(?:on|up) bonus/i) || ['Sign-on bonus'])[0])}</span>` : ''}
           <div class="job-meta">
             <span>📍 ${job.location}</span>
-            <span>💰 ${attr(job.salary.replace(/\s*·\s*\$[\d,]+\s*sign-on bonus/i, ''))}</span>
+            <span>💰 ${attr(job.salary.replace(/\s*·\s*\$[\d,]+\s*sign-(?:on|up) bonus/i, ''))}</span>
           </div>
           <p class="job-desc">${attr(job.summary)}</p>
           <div class="job-foot">
