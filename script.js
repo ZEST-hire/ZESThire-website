@@ -177,6 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (p) p.textContent = `Your email app should have opened with your details. Just hit send, or email us at ${LEADS.inbox}.`;
         }
       }
+      // Google Analytics: count this as a lead (no personal details are sent)
+      try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: kind, page_path: location.pathname, job_title: kind === 'application' ? (data.job_title || '') : undefined }); } catch (e) {}
       form.classList.add('hide');
       if (success) success.classList.add('show');
     });
