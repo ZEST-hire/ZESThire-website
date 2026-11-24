@@ -101,7 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const mailtoFallback = (kind, data) => {
     const subject = kind === 'employer'
       ? `Shortlist request - ${data.company || data.name || ''}`
-      : `Talent network sign-up - ${data.fullname || ''} (${data.specialty || ''})`;
+      : kind === 'application'
+        ? `Application - ${data.job_title || ''} (${data.job_id || ''}) - ${data.fullname || ''}`
+        : `Talent network sign-up - ${data.fullname || ''} (${data.specialty || ''})`;
+    if (kind === 'application') { delete data.cv; data.note = 'Please attach your CV to this email before sending.'; }
     const body = Object.entries(data).filter(([, v]) => v)
       .map(([k, v]) => `${k}: ${v}`).join('\n');
     window.location.href = `mailto:${LEADS.inbox}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -118,15 +121,41 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = form.closest('.signup-card');
       const success = card && card.querySelector('.form-success');
       let oldErr = form.querySelector('.form-error'); if (oldErr) oldErr.remove();
+      const showErr = (msg) => { const p = document.createElement('p'); p.className = 'form-error'; p.textContent = msg; btn.insertAdjacentElement('afterend', p); };
+      if (kind === 'application') {
+        const f = form.querySelector('input[type="file"]').files[0];
+        if (!f) { showErr('Please attach your CV.'); return; }
+        if (f.size > 5 * 1024 * 1024) { showErr('That file is over 5 MB. Please upload a smaller PDF or Word file.'); return; }
+        if (!/\.(pdf|docx?)$/i.test(f.name)) { showErr('Please upload your CV as a PDF or Word document.'); return; }
+      }
 
       let saved = false;
       if (LEADS.url && LEADS.key) {
         btn.disabled = true;
+        const btnHtml = btn.innerHTML; btn.textContent = kind === 'application' ? 'Uploading your CV…' : 'Sending…';
         try {
-          const row = kind === 'employer'
-            ? { kind, name: data.name, company: data.company, email: data.email, phone: data.phone || null,
-                location: data.location || null, engagement: data.engagement || null, roles: data.roles, message: data.message || null }
-            : { kind, name: data.fullname, email: data.email, phone: data.phone || null, specialty: data.specialty || null };
+          const consent = !!data.privacy_consent;
+          let row;
+          if (kind === 'employer') {
+            row = { kind, name: data.name, company: data.company, email: data.email, phone: data.phone || null,
+                    location: data.location || null, engagement: data.engagement || null, roles: data.roles, message: data.message || null };
+          } else if (kind === 'application') {
+            row = { kind, name: data.fullname, email: data.email, phone: data.phone || null, message: data.message || null,
+                    job_id: data.job_id || null, job_title: data.job_title || null, job_location: data.job_location || null };
+            const file = form.querySelector('input[type="file"]').files[0];
+            const safeName = file.name.replace(/[^A-Za-z0-9._-]+/g, '_').slice(-120);
+            const path = `applications/${crypto.randomUUID()}/${safeName}`;
+            const up = await fetch(`${LEADS.url}/storage/v1/object/cv-uploads/${path}`, {
+              method: 'POST',
+              headers: { apikey: LEADS.key, Authorization: `Bearer ${LEADS.key}`, 'Content-Type': file.type || 'application/octet-stream', 'x-upsert': 'false' },
+              body: file
+            });
+            if (!up.ok) throw new Error('CV upload failed: ' + up.status);
+            row.cv_path = path; row.cv_filename = file.name.slice(0, 255);
+          } else {
+            row = { kind, name: data.fullname, email: data.email, phone: data.phone || null, specialty: data.specialty || null };
+          }
+          row.privacy_consent = consent;
           row.page = location.pathname;
           const ctrl = new AbortController();
           const timer = setTimeout(() => ctrl.abort(), 10000);
@@ -138,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearTimeout(timer);
           saved = res.ok;
         } catch (err) { saved = false; }
-        btn.disabled = false;
+        btn.disabled = false; btn.innerHTML = btnHtml;
       }
 
       if (!saved) {
@@ -168,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Published-to-web CSV export of "ZEST - Jobs Board Data".
     // gid=0 is the first tab - update if you add/reorder sheet tabs.
-    const JOBS_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1GQLdamhcCaCbnDc0d2mscbgy2aW3YHa2isepIWAWWls/export?format=csv&gid=0';
+    const JOBS_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1pAlZhvx1CmktnyYmRUNTCfwl98LfTZbo2ojjsgDzVUE/export?format=csv&gid=0';
 
     const pillarLabels = {
       facilities: 'Electrical & Facilities',
@@ -217,29 +246,56 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    const attr = (v) => String(v || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+    /* ---- Apply modal: pre-filled with the role, CV upload ---- */
+    const modal = document.getElementById('apply-modal');
+    let lastFocus = null;
+    const closeModal = () => { if (!modal) return; modal.hidden = true; document.body.classList.remove('modal-open'); if (lastFocus) lastFocus.focus(); };
+    const openModal = (btn) => {
+      if (!modal) return;
+      lastFocus = btn;
+      const form = modal.querySelector('form');
+      const d = btn.dataset;
+      form.reset(); form.classList.remove('hide');
+      modal.querySelector('.form-success').classList.remove('show');
+      const err = form.querySelector('.form-error'); if (err) err.remove();
+      form.job_id.value = d.id || ''; form.job_title.value = d.title || ''; form.job_location.value = d.location || '';
+      const drop = form.querySelector('.file-drop'); drop.classList.remove('has-file');
+      drop.querySelector('.file-drop-text').innerHTML = '<strong>Choose a file</strong> or drag it here';
+      document.getElementById('apply-role').innerHTML = `<strong>${attr(d.title)}</strong><span>${[d.location, d.type, d.salary].filter(Boolean).map(attr).join(' · ')}</span>`;
+      modal.hidden = false; document.body.classList.add('modal-open');
+      setTimeout(() => form.fullname.focus(), 50);
+    };
+    if (modal) {
+      jobsGrid.addEventListener('click', (e) => { const b = e.target.closest('.js-apply'); if (b) openModal(b); });
+      modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+      const drop = modal.querySelector('.file-drop');
+      const input = drop.querySelector('input');
+      const showFile = () => { const f = input.files[0]; drop.classList.toggle('has-file', !!f); drop.querySelector('.file-drop-text').innerHTML = f ? `📄 ${attr(f.name)}` : '<strong>Choose a file</strong> or drag it here'; };
+      input.addEventListener('change', showFile);
+      ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('drag'); }));
+      ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, () => drop.classList.remove('drag')));
+      drop.addEventListener('drop', (e) => { e.preventDefault(); if (e.dataTransfer.files.length) { input.files = e.dataTransfer.files; showFile(); } });
+    }
+
     function jobCard(job) {
       const pillarClass = 'pillar-' + job.pillar;
-      const subject = encodeURIComponent(`Application - ${job.title} (${job.id})`);
-      const body = encodeURIComponent(
-        `Hi ZEST team,\n\n` +
-        `I'm interested in the ${job.title} role and have attached my CV.\n\n` +
-        `You can call me on [your phone number] to discuss.\n\n` +
-        `Thanks,\n[Your name]`
-      );
       return `
         <article class="job-card" data-pillar="${job.pillar}">
           <div class="job-top">
-            <h3 class="job-title">${job.title}</h3>
+            <h3 class="job-title">${attr(job.title)}</h3>
             <span class="job-pill ${pillarClass}">${pillarLabels[job.pillar]}</span>
           </div>
           <div class="job-meta">
             <span>📍 ${job.location}</span>
             <span>💰 ${job.salary}</span>
           </div>
-          <p class="job-desc">${job.summary}</p>
+          <p class="job-desc">${attr(job.summary)}</p>
           <div class="job-foot">
             <span class="job-type">${job.type}</span>
-            <a class="btn btn-primary btn-sm" href="mailto:hello@zesthire.com.au?subject=${subject}&body=${body}">Apply now</a>
+            <button type="button" class="btn btn-primary btn-sm js-apply" data-id="${attr(job.id)}" data-title="${attr(job.title)}" data-location="${attr(job.location)}" data-type="${attr(job.type)}" data-salary="${attr(job.salary)}">Apply now</button>
           </div>
         </article>`;
     }
