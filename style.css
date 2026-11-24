@@ -23,7 +23,7 @@ html{ scroll-behavior: smooth; }
 
 body{
   margin:0;
-  font-family: 'Nunito', 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--cream);
   color: var(--ink);
   line-height:1.55;
@@ -32,7 +32,7 @@ body{
 
 h1,h2,h3,h4,
 .display{
-  font-family:'Fredoka', 'Nunito', sans-serif;
+  font-family:'Plus Jakarta Sans', 'Inter', sans-serif;
   font-weight:600;
   line-height:1.1;
   margin:0 0 .5em;
@@ -59,7 +59,7 @@ ul{ margin:0; padding:0; list-style:none; }
   gap:8px;
   background:var(--ink);
   color:var(--lime);
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-size:.8rem;
   letter-spacing:.08em;
   text-transform:uppercase;
@@ -82,7 +82,7 @@ ul{ margin:0; padding:0; list-style:none; }
   align-items:center;
   justify-content:center;
   gap:8px;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:600;
   font-size:1rem;
   padding:15px 28px;
@@ -117,7 +117,7 @@ ul{ margin:0; padding:0; list-style:none; }
   padding:16px 24px;
 }
 .logo{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:600;
   font-size:1.6rem;
   display:flex;
@@ -148,7 +148,7 @@ ul{ margin:0; padding:0; list-style:none; }
   display:flex;
   align-items:center;
   gap:28px;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:500;
   font-size:.95rem;
 }
@@ -304,7 +304,7 @@ ul{ margin:0; padding:0; list-style:none; }
   border-radius:8px;
   padding:1px 8px;
   font-size:.66rem;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
 }
 .growth-card ul{ margin-top:8px; }
 .growth-card li{
@@ -346,7 +346,7 @@ ul{ margin:0; padding:0; list-style:none; }
   display:flex; gap:10px; align-items:flex-start;
   margin-bottom:10px;
   font-weight:600;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-size:.95rem;
 }
 .signup-card{
@@ -360,7 +360,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .field{ margin-bottom:16px; }
 .field label{
   display:block;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-size:.85rem;
   margin-bottom:6px;
 }
@@ -384,7 +384,7 @@ ul{ margin:0; padding:0; list-style:none; }
   border:3px solid var(--ink);
   border-radius: var(--radius-sm);
   padding:18px;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:600;
   text-align:center;
 }
@@ -443,7 +443,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .filters-bar .field{ margin:0; }
 .results-meta{
   display:flex; justify-content:space-between; align-items:center;
-  margin-bottom:18px; font-family:'Fredoka',sans-serif; font-size:.9rem;
+  margin-bottom:18px; font-family:'Plus Jakarta Sans',sans-serif; font-size:.9rem;
 }
 .jobs-grid{
   display:grid;
@@ -464,7 +464,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .job-card:hover{ transform: translateY(-4px); }
 .job-top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
 .job-pill{
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   font-size:.72rem;
   text-transform:uppercase;
   letter-spacing:.04em;
@@ -476,7 +476,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .job-pill.pillar-facilities{ background: var(--lime); }
 .job-pill.pillar-projects{ background: #FFD24D; }
 .job-pill.pillar-operations{ background: var(--orange); color:var(--white); }
-.job-title{ font-family:'Fredoka',sans-serif; font-size:1.15rem; margin:0; }
+.job-title{ font-family:'Plus Jakarta Sans',sans-serif; font-size:1.15rem; margin:0; }
 .job-meta{
   display:flex; flex-wrap:wrap; gap:10px;
   font-size:.85rem; opacity:.75;
@@ -485,7 +485,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .job-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
 .job-type{
   font-size:.78rem;
-  font-family:'Fredoka',sans-serif;
+  font-family:'Plus Jakarta Sans',sans-serif;
   background: var(--cream);
   border:2px solid var(--ink);
   padding:3px 10px;
