@@ -61,7 +61,6 @@ ul{ margin:0; padding:0; list-style:none; }
   color:var(--orange);
   margin-bottom:14px;
 }
-.eyebrow::before{ content:""; width:22px; height:2px; background:currentColor; border-radius:2px; }
 .section-dark .eyebrow{ color:var(--lime); }
 
 .section-head{ max-width:680px; margin:0 0 48px; }

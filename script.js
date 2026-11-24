@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
      (or if saving fails) the form opens a pre-filled email to the ZEST inbox
      instead, so no enquiry is ever lost. */
   const LEADS = {
-    url: '',   // e.g. https://xxxx.supabase.co
-    key: '',   // Supabase publishable (anon) key - safe to expose; insert-only via RLS
+    url: 'https://oqijuuumrmtbbmyzutvq.supabase.co',   // Zest Hire Supabase project
+    key: 'sb_publishable_O1GtmfSli5-d8ULw3_4N3A_izIHW529', // publishable key - safe to expose; table is insert-only for the public
     inbox: 'hello@zesthire.com.au'
   };
 
@@ -112,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const kind = form.dataset.kind;
       const data = Object.fromEntries(new FormData(form).entries());
+      if (data.website) { form.classList.add('hide'); const sc = form.closest('.signup-card'); const ok = sc && sc.querySelector('.form-success'); if (ok) ok.classList.add('show'); return; } // spam bot filled the hidden field
+      delete data.website;
       const btn = form.querySelector('button[type="submit"]');
       const card = form.closest('.signup-card');
       const success = card && card.querySelector('.form-success');
@@ -126,11 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 location: data.location || null, engagement: data.engagement || null, roles: data.roles, message: data.message || null }
             : { kind, name: data.fullname, email: data.email, phone: data.phone || null, specialty: data.specialty || null };
           row.page = location.pathname;
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 10000);
           const res = await fetch(`${LEADS.url}/rest/v1/website_leads`, {
-            method: 'POST',
+            method: 'POST', signal: ctrl.signal,
             headers: { 'Content-Type': 'application/json', apikey: LEADS.key, Authorization: `Bearer ${LEADS.key}`, Prefer: 'return=minimal' },
             body: JSON.stringify(row)
           });
+          clearTimeout(timer);
           saved = res.ok;
         } catch (err) { saved = false; }
         btn.disabled = false;
