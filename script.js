@@ -288,9 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 class="job-title">${attr(job.title)}</h3>
             <span class="job-pill ${pillarClass}">${pillarLabels[job.pillar]}</span>
           </div>
+          ${/bonus/i.test(job.salary + ' ' + job.summary) ? `<span class="job-bonus">🎁 ${attr((job.salary.match(/\$[\d,]+\s*sign-on bonus/i) || ['Sign-on bonus'])[0])}</span>` : ''}
           <div class="job-meta">
             <span>📍 ${job.location}</span>
-            <span>💰 ${job.salary}</span>
+            <span>💰 ${attr(job.salary.replace(/\s*·\s*\$[\d,]+\s*sign-on bonus/i, ''))}</span>
           </div>
           <p class="job-desc">${attr(job.summary)}</p>
           <div class="job-foot">
@@ -300,7 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>`;
     }
 
-    loadJobs().then(jobsList => {
+    loadJobs().then(loaded => {
+      // Newest roles first (by Posted Date); rows without a date keep their sheet order at the end.
+      const jobsList = loaded.map((j, i) => ({ j, i }))
+        .sort((a, b) => (b.j.posted || '').localeCompare(a.j.posted || '') || a.i - b.i)
+        .map(x => x.j);
       function render() {
         const q = (searchInput.value || '').toLowerCase().trim();
         const loc = locationSelect.value;

@@ -394,6 +394,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .job-pill.pillar-projects{ background:#FFF3CC; color:#6B4E00; }
 .job-pill.pillar-operations{ background:#FFE7DC; color:#A33410; }
 .job-title{ font-size:1.15rem; margin:0; }
+.job-bonus{ align-self:flex-start; background:var(--lime); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:.82rem; padding:5px 12px; border-radius:999px; }
 .job-meta{ display:flex; flex-wrap:wrap; gap:8px 16px; font-size:.88rem; color:var(--slate); }
 .job-desc{ font-size:.94rem; color:#3A3F48; flex:1; margin:0; }
 .job-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:6px; gap:12px; padding-top:16px; border-top:1px solid var(--line); }
