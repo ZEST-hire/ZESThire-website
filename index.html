@@ -5,95 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ZEST - Critical Infrastructure & Digital Facilities Recruitment | WA, QLD, NSW & VIC</title>
 <meta name="description" content="ZEST connects electricians, skilled trades, technicians and coordinators with critical infrastructure and data centre employers across WA, QLD, NSW and VIC.">
+<meta name="theme-color" content="#14161A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ========== NAV ========== -->
-<header class="nav">
+<header class="nav" id="top">
   <div class="nav-inner container">
     <a href="index.html" class="logo"><img src="zest-logo-patch.png" alt="ZEST hire"></a>
-    <nav class="nav-links">
-      <a href="index.html#pillars">Roles we place</a>
-      <a href="index.html#why-recruiter">Why ZEST?</a>
+    <nav class="nav-links" id="nav-links" aria-label="Main">
+      <a href="index.html#roles">Roles we place</a>
+      <a href="index.html#employers">For employers</a>
+      <a href="index.html#why">Why ZEST</a>
       <a href="index.html#growth">Market growth</a>
       <a href="jobs.html">Jobs board</a>
-      <a href="index.html#signup">Join the crew</a>
+      <a href="jobs.html" class="btn btn-primary mobile-only">Browse live jobs</a>
+      <a href="#hire" class="btn btn-ghost mobile-only">Request a shortlist</a>
     </nav>
     <div class="nav-cta">
-      <a href="jobs.html" class="btn btn-lime btn-sm"><span>Browse jobs</span> 🔧</a>
-      <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+      <a href="#hire" class="btn btn-ghost btn-sm">Hire talent</a>
+      <a href="jobs.html" class="btn btn-primary btn-sm">Browse jobs</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
     </div>
   </div>
 </header>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
-  <div class="container hero-centred">
-    <span class="eyebrow">Critical Infrastructure Workforce Solutions</span>
-    <h1>Built for the people who <span class="hl">keep the lights on.</span></h1>
-    <p class="lead">ZEST places the people behind the infrastructure powering Australia's future.</p>
-    <p class="lead">Specialising in project workforce across AI &amp; Data Centres, Power, Energy and Critical Infrastructure. Connecting electricians, technicians and experienced professionals from across adjacent industries and building project teams around the skills our clients actually need.</p>
-    <div class="hero-actions">
-      <a href="jobs.html" class="btn btn-primary">See live roles →</a>
-      <a href="#signup" class="btn btn-ghost">Join the talent network</a>
+  <div class="container hero-grid">
+    <div>
+      <div class="audience-toggle" role="tablist" aria-label="Who are you?">
+        <button role="tab" aria-selected="true" aria-controls="aud-candidates" id="tab-candidates">I'm looking for work</button>
+        <button role="tab" aria-selected="false" aria-controls="aud-employers" id="tab-employers">I'm hiring</button>
+      </div>
+
+      <div class="audience-panel" id="aud-candidates" role="tabpanel" aria-labelledby="tab-candidates">
+        <h1>Built for the people who <span class="hl">keep the lights on.</span></h1>
+        <p class="lead">Electricians, technicians and project professionals: we connect you with critical infrastructure, data centre and energy projects across WA, QLD, NSW &amp; VIC, including roles that never get advertised.</p>
+        <div class="hero-actions">
+          <a href="jobs.html" class="btn btn-primary">See live roles <span class="arrow">→</span></a>
+          <a href="#signup" class="btn btn-ghost-light">Join the talent network</a>
+        </div>
+      </div>
+
+      <div class="audience-panel" id="aud-employers" role="tabpanel" aria-labelledby="tab-employers" hidden>
+        <h1>Project-ready crews for <span class="hl">critical infrastructure.</span></h1>
+        <p class="lead">Specialising in project workforce across AI &amp; Data Centres, Power, Energy and Critical Infrastructure. We build teams around the skills you actually need, from licensed electricians on the tools to coordinators in the project office.</p>
+        <div class="hero-actions">
+          <a href="#hire" class="btn btn-primary">Request a shortlist <span class="arrow">→</span></a>
+          <a href="#employers" class="btn btn-ghost-light">How we work with employers</a>
+        </div>
+      </div>
+
+      <div class="hero-proof">
+        <div><strong>4 states</strong>WA · QLD · NSW · VIC</div>
+        <div><strong>Contract, temp &amp; perm</strong>Flexible engagement</div>
+        <div><strong>Trades to management</strong>One recruiter, every site</div>
+      </div>
     </div>
+
+    <aside class="hero-card reveal d2" aria-label="Roles we're filling now">
+      <div class="hero-card-img" style="background-image:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=70')" role="img" aria-label="Electrician in a hard hat installing wiring"></div>
+      <h3><span class="live-dot"></span>Roles we're filling now</h3>
+      <p class="sub">Across data centres, power &amp; critical facilities</p>
+      <div class="chip-list">
+        <span class="chip hot">Licensed Electricians</span>
+        <span class="chip">Electrical Technicians</span>
+        <span class="chip">HVAC Technicians</span>
+        <span class="chip">Data-Centre Technicians</span>
+        <span class="chip">Commissioning Coordinators</span>
+        <span class="chip">Facilities Managers</span>
+        <span class="chip">Project Coordinators</span>
+      </div>
+    </aside>
   </div>
 </section>
+
+<!-- ========== SECTOR MARQUEE ========== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>AI &amp; Data Centres</span><span>Licensed Electricians</span><span>Power &amp; Energy</span><span>Critical Facilities</span><span>Construction &amp; Commissioning</span><span>HVAC &amp; Mechanical</span><span>Operations &amp; Service Delivery</span>
+    <span>AI &amp; Data Centres</span><span>Licensed Electricians</span><span>Power &amp; Energy</span><span>Critical Facilities</span><span>Construction &amp; Commissioning</span><span>HVAC &amp; Mechanical</span><span>Operations &amp; Service Delivery</span>
+  </div>
+</div>
 
 <!-- ========== STATS ========== -->
-<section class="stats-bar">
-  <div class="container stats-grid">
-    <div class="stat"><h3>$150B+</h3><p>National data centre investment pipeline to 2030</p></div>
-    <div class="stat"><h3>14 → 20+</h3><p>Data centres operating &amp; in the pipeline across WA</p></div>
-    <div class="stat"><h3>25 → 30+</h3><p>Data centres operating &amp; in the pipeline across QLD</p></div>
-    <div class="stat"><h3>120+</h3><p>Data centres already running across NSW</p></div>
-    <div class="stat"><h3>630MW+</h3><p>AirTrunk's Melbourne capacity across MEL1 &amp; MEL2 by 2027</p></div>
-    <div class="stat"><h3>4 States</h3><p>One recruiter, every site across WA, QLD, NSW &amp; VIC</p></div>
+<section class="section-tight section-white">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="num">$<span data-count="150">150</span>B<em>+</em></div><p>National data centre investment pipeline to 2030</p></div>
+      <div class="stat reveal d1"><div class="num">~<span data-count="6">6</span>GW</div><p>Of new capacity, around 4x what operates today</p></div>
+      <div class="stat reveal d2"><div class="num"><span data-count="400000" data-format="k">400k</span></div><p>Jobs supported while it's built and switched on</p></div>
+      <div class="stat reveal d3"><div class="num"><span data-count="4">4</span> states</div><p>One recruiter across WA, QLD, NSW &amp; VIC</p></div>
+    </div>
+    <p class="stats-source">Sources: CommBank, Westpac IQ, Cushman &amp; Wakefield, 2026.</p>
   </div>
 </section>
 
-<!-- ========== PILLARS ========== -->
-<section class="section" id="pillars">
+<!-- ========== ROLES ========== -->
+<section class="section" id="roles">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">What we recruit for</span>
       <h2>Three crews. One critical mission.</h2>
-      <p>From the plant room to the project office to the ops floor - if the role keeps critical infrastructure running, it's one of ours.</p>
+      <p>From the switchboard to the project office to the ops floor: if the role keeps critical infrastructure running, it's one of ours.</p>
     </div>
-    <div class="pillars-grid">
-      <div class="pillar-card c1">
-        <div class="pillar-icon">🔧</div>
-        <h3>Critical Facilities</h3>
-        <ul>
-          <li>Licensed Electricians</li>
-          <li>Facilities Coordinators</li>
-          <li>Facilities Managers</li>
-          <li>Maintenance Planners</li>
+
+    <div class="tabs reveal" role="tablist" aria-label="Role categories">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="role-electrical" id="rt-electrical">⚡ Electrical &amp; Critical Facilities</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="role-projects" id="rt-projects">🏗️ Projects &amp; Construction</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="role-ops" id="rt-ops">🖥️ Operations &amp; Service Delivery</button>
+    </div>
+
+    <div class="role-panel reveal" id="role-electrical" role="tabpanel" aria-labelledby="rt-electrical">
+      <div class="role-img" style="background-image:url('https://images.unsplash.com/photo-1758101755915-462eddc23f57?auto=format&fit=crop&w=1200&q=70')" role="img" aria-label="Electrician testing an electrical panel with a multimeter"><span class="img-tag">On the tools &amp; in the plant room</span></div>
+      <div class="role-body">
+        <h3>Electrical &amp; Critical Facilities</h3>
+        <p>Licensed electricians and technical trades who build, maintain and protect the power and cooling that critical sites can't run without.</p>
+        <ul class="role-list">
+          <li class="feature">Licensed Electricians</li>
           <li>Electrical &amp; Mechanical Technicians</li>
           <li>HVAC Technicians</li>
+          <li>Maintenance Planners</li>
+          <li>Facilities Coordinators</li>
+          <li>Facilities Managers</li>
           <li>Critical-Environment Managers</li>
         </ul>
+        <a href="jobs.html" class="btn btn-primary">See electrical &amp; facilities roles <span class="arrow">→</span></a>
       </div>
-      <div class="pillar-card c2">
-        <div class="pillar-icon">🏗️</div>
+    </div>
+
+    <div class="role-panel" id="role-projects" role="tabpanel" aria-labelledby="rt-projects" hidden>
+      <div class="role-img" style="background-image:url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=70')" role="img" aria-label="Construction crew in hard hats on site"><span class="img-tag">Building the next wave of sites</span></div>
+      <div class="role-body">
         <h3>Projects &amp; Construction Support</h3>
-        <ul>
+        <p>The coordinators and controllers who keep data centre and infrastructure builds on time, on budget and ready to commission.</p>
+        <ul class="role-list">
           <li>Project Coordinators</li>
+          <li>Commissioning Coordinators</li>
           <li>Document Controllers</li>
           <li>Schedulers</li>
           <li>Contracts Administrators</li>
           <li>Procurement Coordinators</li>
-          <li>Commissioning Coordinators</li>
           <li>Site Administrators</li>
         </ul>
+        <a href="jobs.html" class="btn btn-primary">See project roles <span class="arrow">→</span></a>
       </div>
-      <div class="pillar-card c3">
-        <div class="pillar-icon">🖥️</div>
+    </div>
+
+    <div class="role-panel" id="role-ops" role="tabpanel" aria-labelledby="rt-ops" hidden>
+      <div class="role-img" style="background-image:url('https://images.unsplash.com/photo-1580106815433-a5b1d1d53d85?auto=format&fit=crop&w=1200&q=70')" role="img" aria-label="Data centre corridor"><span class="img-tag">Running live data centres 24/7</span></div>
+      <div class="role-body">
         <h3>Operations &amp; Service Delivery</h3>
-        <ul>
+        <p>The people who keep live data centres and digital facilities running smoothly for customers, every hour of every day.</p>
+        <ul class="role-list">
           <li>Data-Centre Technicians</li>
           <li>Operations Coordinators</li>
           <li>Service-Delivery Managers</li>
@@ -101,117 +171,246 @@
           <li>Customer Implementation Managers</li>
           <li>Security Coordinators</li>
         </ul>
+        <a href="jobs.html" class="btn btn-primary">See operations roles <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== WHY A RECRUITER ========== -->
-<section class="section section-tight" id="why-recruiter" style="background:var(--paper); border-top:3px solid var(--ink); border-bottom:3px solid var(--ink);">
+<!-- ========== AUDIENCE SPLIT ========== -->
+<section class="section section-white" id="employers">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head center reveal">
+      <span class="eyebrow">How we help</span>
+      <h2>Whichever side of the hire you're on</h2>
+      <p>We work both sides of the market, so we know what good looks like for candidates and for clients.</p>
+    </div>
+    <div class="split-grid">
+      <article class="split-card reveal">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=70')"></div>
+        <div class="split-body">
+          <span class="eyebrow">For candidates</span>
+          <h3>Your next site, sorted.</h3>
+          <ul>
+            <li>Roles across multiple employers and precincts</li>
+            <li>Rate, roster and contract terms negotiated for you</li>
+            <li>Tickets and inductions kept current</li>
+          </ul>
+          <a href="#signup" class="btn btn-lime">Join the talent network <span class="arrow">→</span></a>
+        </div>
+      </article>
+      <article class="split-card reveal d1">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1535732759880-bbd5c7265e3f?auto=format&fit=crop&w=1200&q=70')"></div>
+        <div class="split-body">
+          <span class="eyebrow">For employers</span>
+          <h3>Crews built around your project.</h3>
+          <ul>
+            <li>Pre-screened, ticketed and site-ready shortlists</li>
+            <li>Talent drawn from adjacent industries, not just the usual pool</li>
+            <li>Contract, temp and permanent across four states</li>
+          </ul>
+          <a href="#hire" class="btn btn-primary">Request a shortlist <span class="arrow">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2 style="color:#fff;">From first chat to first shift</h2>
+      <p>No black hole applications. A real recruiter who knows your trade, start to finish.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">1</div><h3>Tell us what you're after</h3><p>Join the network or send your CV. We'll call to understand your tickets, experience, rates and where you want to work.</p></div>
+      <div class="step reveal d1"><div class="step-num">2</div><h3>We match you to the right site</h3><p>We put you forward for advertised and unadvertised roles that genuinely fit, and only with your OK.</p></div>
+      <div class="step reveal d2"><div class="step-num">3</div><h3>Start, and stay supported</h3><p>We handle the paperwork and compliance, then stay in your corner for the next project and the one after.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY ZEST ========== -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head center reveal">
       <span class="eyebrow">Why go through ZEST</span>
-      <h2>Why ZEST?</h2>
+      <h2>One relationship. Every opportunity.</h2>
       <p>Going direct means one employer, one vacancy, one shot. A recruiter who knows your trade backs you across your whole career.</p>
     </div>
     <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="emoji">🚪</div>
-        <h4>Access to more than one employer</h4>
-        <p>One relationship with ZEST opens roles across multiple sites, companies and precincts - not just whoever happens to be hiring direct.</p>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+        <h4>More than one employer</h4>
+        <p>One relationship with ZEST opens roles across multiple sites, companies and precincts, not just whoever happens to be hiring direct.</p>
       </div>
-      <div class="benefit-card">
-        <div class="emoji">📈</div>
-        <h4>Represented for your whole career</h4>
-        <p>We stay in your corner after you start - tracking your tickets, your goals, and what's next, not just filling today's vacancy.</p>
+      <div class="benefit-card reveal d1">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h4>Unadvertised roles first</h4>
+        <p>Plenty of critical infrastructure roles never hit a job board. They move through trusted networks, and we'll bring them to you.</p>
       </div>
-      <div class="benefit-card">
-        <div class="emoji">🗺️</div>
-        <h4>WA, QLD, NSW and VIC, covered</h4>
+      <div class="benefit-card reveal d2">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h4>Someone negotiating for you</h4>
+        <p>Rate, roster, contract terms: we advocate on your behalf so you're not the one across the table alone.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16M16 6v16"/></svg></div>
+        <h4>WA, QLD, NSW &amp; VIC covered</h4>
         <p>Want to relocate, go FIFO, or work Brisbane's Olympic build instead of Macquarie Park? We already have the relationships there.</p>
       </div>
-      <div class="benefit-card">
-        <div class="emoji">🔒</div>
-        <h4>Unadvertised roles first</h4>
-        <p>Plenty of critical infrastructure roles never hit a job board - they move through trusted networks. We'll bring them to you.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="emoji">🤝</div>
-        <h4>Someone negotiating for you</h4>
-        <p>Rate, roster, contract terms - we advocate on your behalf so you're not the one across the table alone.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="emoji">🎯</div>
-        <h4>Real market knowledge</h4>
-        <p>Straight answers on what your ticket's worth right now, which precincts are hiring, and where the next wave of work is landing.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="emoji">🧾</div>
-        <h4>Flexibility, your way</h4>
-        <p>Contract, temp or permanent - trial an employer, bridge between projects, or lock in something long-term. Your call.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="emoji">🕶️</div>
-        <h4>Discretion when you need it</h4>
-        <p>Explore your next move quietly, without your current employer finding out before you're ready.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="emoji">✅</div>
+      <div class="benefit-card reveal d1">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h4>Tickets &amp; compliance sorted</h4>
         <p>We help keep licences, inductions and site tickets current across every client, so you're never scrambling before a start date.</p>
+      </div>
+      <div class="benefit-card reveal d2">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h4>Discretion when you need it</h4>
+        <p>Explore your next move quietly, without your current employer finding out before you're ready.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========== GROWTH ========== -->
-<section class="section growth-section" id="growth">
+<section class="section section-dark" id="growth">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow" style="background:var(--lime); color:var(--ink);">The AI data centre boom</span>
-      <h2>Australia's AI data centre boom is being built in WA, QLD, NSW &amp; VIC. Be part of it.</h2>
-      <p>Australia is now the world's second-largest destination for data centre investment, and AI is the single biggest driver of that growth. WA, QLD, NSW and Victoria are where most of that gets built, wired, cooled and run.</p>
+    <div class="section-head reveal">
+      <span class="eyebrow">The AI data centre boom</span>
+      <h2 style="color:#fff;">Australia's AI build-out is happening in four states. Be part of it.</h2>
+      <p>Australia is now the world's second-largest destination for data centre investment, and AI is the biggest driver. Pick a state to see what's being built.</p>
     </div>
-    <div class="growth-grid">
-      <div class="growth-card">
-        <h3>🦘 Western Australia <span class="badge">Perth · Pilbara · Kwinana</span></h3>
-        <ul>
-          <li>14 data centres already operating, with 6 more in the pipeline as WA's digital footprint expands beyond Perth.</li>
-          <li>NEXTDC leads the build-out locally, with new capacity like the CDC Maddington campus (200MW) in development.</li>
-          <li>The Pilbara is emerging as a global-scale hub for renewably-powered AI data centres, backed by miners including Fortescue exploring gigawatt-scale campuses near Port Hedland.</li>
-          <li>Cheap renewable energy and industrial land are pulling hyperscale interest west - meaning more builds, more shifts, more crews needed on the ground.</li>
-        </ul>
+
+    <div class="growth-wrap reveal">
+      <div class="state-tabs" role="tablist" aria-label="States">
+        <button class="state-tab" role="tab" aria-selected="true" aria-controls="st-wa" id="stt-wa"><span><strong>Western Australia</strong><small>Perth · Pilbara · Kwinana</small></span><span class="stat-badge">14 → 20+</span></button>
+        <button class="state-tab" role="tab" aria-selected="false" aria-controls="st-nsw" id="stt-nsw"><span><strong>New South Wales</strong><small>Macquarie Park · Western Sydney</small></span><span class="stat-badge">120+</span></button>
+        <button class="state-tab" role="tab" aria-selected="false" aria-controls="st-vic" id="stt-vic"><span><strong>Victoria</strong><small>Port Melbourne · Melbourne's West</small></span><span class="stat-badge">630MW+</span></button>
+        <button class="state-tab" role="tab" aria-selected="false" aria-controls="st-qld" id="stt-qld"><span><strong>Queensland</strong><small>Fortitude Valley · Sunshine Coast</small></span><span class="stat-badge">25 → 30+</span></button>
       </div>
-      <div class="growth-card">
-        <h3>🐨 New South Wales <span class="badge">Macquarie Park · Western Sydney</span></h3>
-        <ul>
-          <li>Over 120 data centres already running across Sydney - the largest market in the country, led by AirTrunk, CDC, NEXTDC, Equinix and Global Switch.</li>
-          <li>The mature Macquarie Park precinct is now joined by a fast-growing Western Sydney corridor - Eastern Creek, Kemps Creek and the Aerotropolis.</li>
-          <li>Investment proposals for the Aerotropolis more than doubled to $21.6B in under two years, with hyperscale campuses proposed at billion-dollar scale.</li>
-          <li>New substations, the Bradfield City Centre and the Western Sydney Airport metro line are all landing to support the build-out through 2027 and beyond.</li>
-        </ul>
-      </div>
-      <div class="growth-card">
-        <h3>🌆 Victoria <span class="badge">Port Melbourne · Melbourne's West</span></h3>
-        <ul>
-          <li>NEXTDC's roughly $2 billion M4 campus in Port Melbourne has been fast-tracked by the Victorian Government - set to be one of the state's largest single data centre developments.</li>
-          <li>AirTrunk is building a second Melbourne campus (MEL2) in the city's north-west, adding 354MW+ of capacity and lifting its total Melbourne investment past $7 billion.</li>
-          <li>Melbourne's western industrial precincts - Truganina, Mickleham, Donnybrook - are emerging as the state's own hyperscale corridor, echoing what's happening in Western Sydney.</li>
-          <li>Bigger land parcels and fewer grid constraints than Sydney mean Melbourne's committed pipeline is set to almost triple its current live capacity.</li>
-        </ul>
-      </div>
-      <div class="growth-card">
-        <h3>☀️ Queensland <span class="badge">Fortitude Valley · Sunshine Coast</span></h3>
-        <ul>
-          <li>Queensland now has 25 data centres operating and 5 more in the pipeline, anchored by NEXTDC's Brisbane campus.</li>
-          <li>NEXTDC's B2 Brisbane expansion in Fortitude Valley is doubling capacity from 6MW to 12MW as part of a $160 million, two-facility investment creating hundreds of construction roles.</li>
-          <li>Sunshine Coast is emerging as a secondary hub, giving operators low-latency options outside the Brisbane CBD.</li>
-          <li>With Brisbane hosting the 2032 Olympics, digital infrastructure is being built alongside a state-defining wave of transport, venue and energy projects - all competing for the same skilled workforce.</li>
-        </ul>
+
+      <div>
+        <div class="state-panel" id="st-wa" role="tabpanel" aria-labelledby="stt-wa">
+          <div class="state-img" style="background-image:url('https://images.unsplash.com/photo-1715026323215-a2dbb71272f6?auto=format&fit=crop&w=1000&q=70')"></div>
+          <div class="state-body">
+            <h3>Western Australia</h3><span class="where">14 operating · 6 more in the pipeline</span>
+            <ul>
+              <li>NEXTDC leads the build-out locally, with new capacity like the CDC Maddington campus (200MW) in development.</li>
+              <li>The Pilbara is emerging as a hub for renewably-powered AI data centres, with miners including Fortescue exploring gigawatt-scale campuses near Port Hedland.</li>
+              <li>Cheap renewable energy and industrial land mean more builds, more shifts and more crews needed on the ground.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="state-panel" id="st-nsw" role="tabpanel" aria-labelledby="stt-nsw" hidden>
+          <div class="state-img" style="background-image:url('https://images.unsplash.com/photo-1485083269755-a7b559a4fe5e?auto=format&fit=crop&w=1000&q=70')"></div>
+          <div class="state-body">
+            <h3>New South Wales</h3><span class="where">120+ data centres · the country's largest market</span>
+            <ul>
+              <li>Led by AirTrunk, CDC, NEXTDC, Equinix and Global Switch across Sydney.</li>
+              <li>Macquarie Park is now joined by a fast-growing Western Sydney corridor: Eastern Creek, Kemps Creek and the Aerotropolis.</li>
+              <li>Aerotropolis investment proposals more than doubled to $21.6B in under two years, with new substations and the airport metro landing through 2027.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="state-panel" id="st-vic" role="tabpanel" aria-labelledby="stt-vic" hidden>
+          <div class="state-img" style="background-image:url('https://images.unsplash.com/photo-1587582423116-ec07293f0395?auto=format&fit=crop&w=1000&q=70')"></div>
+          <div class="state-body">
+            <h3>Victoria</h3><span class="where">630MW+ AirTrunk capacity across MEL1 &amp; MEL2 by 2027</span>
+            <ul>
+              <li>NEXTDC's roughly $2 billion M4 campus in Port Melbourne has been fast-tracked by the Victorian Government.</li>
+              <li>AirTrunk's MEL2 adds 354MW+ in the north-west, lifting its Melbourne investment past $7 billion.</li>
+              <li>Truganina, Mickleham and Donnybrook are emerging as Melbourne's own hyperscale corridor, with the committed pipeline set to almost triple live capacity.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="state-panel" id="st-qld" role="tabpanel" aria-labelledby="stt-qld" hidden>
+          <div class="state-img" style="background-image:url('https://images.unsplash.com/photo-1584169417032-d34e8d805e8b?auto=format&fit=crop&w=1000&q=70')"></div>
+          <div class="state-body">
+            <h3>Queensland</h3><span class="where">25 operating · 5 more in the pipeline</span>
+            <ul>
+              <li>NEXTDC's B2 Brisbane expansion is doubling capacity from 6MW to 12MW as part of a $160 million investment creating hundreds of construction roles.</li>
+              <li>The Sunshine Coast is emerging as a secondary hub outside the Brisbane CBD.</li>
+              <li>With the 2032 Olympics, digital infrastructure is being built alongside a wave of transport, venue and energy projects, all competing for the same skilled workforce.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="growth-note">
-      Nationally, Australia's data centre pipeline is worth an estimated <strong>$150–155 billion</strong> through 2030 - around six gigawatts of capacity, roughly four times what's operating today - and is temporarily supporting some <strong>400,000 jobs</strong> as it's built and switched on. AI-related data centres alone now account for roughly <strong>17% of Australia's total private investment</strong>. WA, QLD, NSW and Victoria are four of the biggest pieces of that map, and ZEST is building the crews to deliver it. <em>(Sources: CommBank, Westpac IQ, Cushman &amp; Wakefield, Baxtel/Datacenters.com market data, AirTrunk, iTWire, CRN, TechRepublic, DatacenterDynamics, RenewMap, 2026.)</em>
+
+    <details class="growth-note">
+      <summary>About these figures</summary>
+      <p>Nationally, Australia's data centre pipeline is worth an estimated $150–155 billion through 2030 (around six gigawatts of capacity, roughly four times what's operating today) and is temporarily supporting some 400,000 jobs as it's built and switched on. AI-related data centres alone now account for roughly 17% of Australia's total private investment. Sources: CommBank, Westpac IQ, Cushman &amp; Wakefield, Baxtel/Datacenters.com market data, AirTrunk, iTWire, CRN, TechRepublic, DatacenterDynamics, RenewMap, 2026.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ========== EMPLOYER CTA ========== -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1768926968986-a88590ce5025?auto=format&fit=crop&w=1600&q=70')"></div>
+      <div>
+        <h2>Need a crew on site?</h2>
+        <p>Tell us the project, the timeline and the tickets you need. We'll come back with a shortlist of people ready to start.</p>
+      </div>
+      <div class="actions">
+        <a href="#hire" class="btn btn-lime">Request a shortlist <span class="arrow">→</span></a>
+        <a href="mailto:hello@zesthire.com.au?subject=Partner%20with%20ZEST" class="btn btn-ghost-light">Partner with ZEST</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EMPLOYER ENQUIRY ========== -->
+<section class="section section-white" id="hire">
+  <div class="container signup-wrap">
+    <div class="signup-copy reveal">
+      <span class="eyebrow">For employers</span>
+      <h2>Tell us who you need on site.</h2>
+      <p>Share the project, the roles and the timeline. We'll come back to you with how we'd approach it, and a shortlist when you're ready.</p>
+      <ul>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Electricians, technicians &amp; project professionals</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Contract, temp &amp; permanent</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>WA, QLD, NSW &amp; VIC</li>
+      </ul>
+    </div>
+    <div class="signup-card reveal d1">
+      <form id="hire-form" class="lead-form" data-kind="employer">
+        <div class="form-row">
+          <div class="field"><label for="h-name">Your name</label><input id="h-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="h-company">Company</label><input id="h-company" name="company" type="text" autocomplete="organization" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="h-email">Work email</label><input id="h-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="h-phone">Phone</label><input id="h-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="h-location">Location</label>
+            <select id="h-location" name="location" required>
+              <option value="" disabled selected>Select state</option>
+              <option>WA</option><option>QLD</option><option>NSW</option><option>VIC</option><option>Multiple / other</option>
+            </select>
+          </div>
+          <div class="field"><label for="h-type">Engagement</label>
+            <select id="h-type" name="engagement">
+              <option value="" disabled selected>Select type</option>
+              <option>Contract / temp</option><option>Permanent</option><option>Both / not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="h-roles">Roles you need</label><input id="h-roles" name="roles" type="text" placeholder="e.g. 4 x licensed electricians, 1 x commissioning coordinator" required></div>
+        <div class="field"><label for="h-msg">Project details <span style="font-weight:500;color:var(--slate)">(optional)</span></label><textarea id="h-msg" name="message" rows="3" placeholder="Site, start date, roster, tickets required…"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Request a shortlist <span class="arrow">→</span></button>
+        <p class="form-note">We'll only use your details to respond to this enquiry.</p>
+      </form>
+      <div class="form-success" role="status">
+        <div class="big">🤝</div>
+        <h3>Thanks, we're on it.</h3>
+        <p>We'll be in touch shortly to talk through your project.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -219,53 +418,53 @@
 <!-- ========== SIGNUP ========== -->
 <section class="section signup-section" id="signup">
   <div class="container signup-wrap">
-    <div class="signup-copy">
+    <div class="signup-copy reveal">
       <span class="eyebrow">Join the crew</span>
       <h2>Get first look at roles before they're advertised.</h2>
-      <p>Join ZEST's talent network and we'll come to you when the right role lands - across WA, QLD, NSW, VIC, and whatever's next.</p>
+      <p>Join ZEST's talent network and we'll come to you when the right role lands, across WA, QLD, NSW, VIC and whatever's next.</p>
       <ul>
-        <li>✅ Early access to unadvertised roles</li>
-        <li>✅ Matched to your ticket &amp; specialty</li>
-        <li>✅ No spam - just relevant opportunities</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Early access to unadvertised roles</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Matched to your ticket &amp; specialty</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#14161A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>No spam, just relevant opportunities</li>
       </ul>
     </div>
-    <div class="signup-card">
-      <form id="signup-form">
+    <div class="signup-card reveal d1">
+      <form id="signup-form" class="lead-form" data-kind="candidate">
         <div class="form-row">
           <div class="field">
             <label for="fullname">Full name</label>
-            <input id="fullname" name="fullname" type="text" placeholder="Jamie Smith" required>
+            <input id="fullname" name="fullname" type="text" placeholder="Jamie Smith" autocomplete="name" required>
           </div>
           <div class="field">
             <label for="phone">Phone number</label>
-            <input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" required>
+            <input id="phone" name="phone" type="tel" placeholder="04XX XXX XXX" autocomplete="tel" required>
           </div>
         </div>
         <div class="field">
           <label for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="jamie@email.com" required>
+          <input id="email" name="email" type="email" placeholder="jamie@email.com" autocomplete="email" required>
         </div>
         <div class="field">
           <label for="specialty">Your specialty</label>
           <select id="specialty" name="specialty" required>
             <option value="" disabled selected>Select your role</option>
-            <optgroup label="Critical Facilities">
+            <optgroup label="Electrical & Critical Facilities">
               <option>Electrician</option>
-              <option>Facilities Coordinator</option>
-              <option>Facilities Manager</option>
-              <option>Maintenance Planner</option>
               <option>Electrical Technician</option>
               <option>Mechanical Technician</option>
               <option>HVAC Technician</option>
+              <option>Maintenance Planner</option>
+              <option>Facilities Coordinator</option>
+              <option>Facilities Manager</option>
               <option>Critical-Environment Manager</option>
             </optgroup>
             <optgroup label="Projects & Construction Support">
               <option>Project Coordinator</option>
+              <option>Commissioning Coordinator</option>
               <option>Document Controller</option>
               <option>Scheduler</option>
               <option>Contracts Administrator</option>
               <option>Procurement Coordinator</option>
-              <option>Commissioning Coordinator</option>
               <option>Site Administrator</option>
             </optgroup>
             <optgroup label="Operations & Service Delivery">
@@ -279,11 +478,13 @@
             <option>Other / Not listed</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Join the talent network →</button>
+        <button type="submit" class="btn btn-primary btn-block">Join the talent network <span class="arrow">→</span></button>
         <p class="form-note">By signing up you agree to be contacted by ZEST about relevant roles. Unsubscribe anytime.</p>
       </form>
-      <div class="form-success" id="signup-success">
-        🎉 You're on the list! Keep an eye on your inbox - we'll be in touch when the right role comes up.
+      <div class="form-success" id="signup-success" role="status">
+        <div class="big">🎉</div>
+        <h3>You're on the list!</h3>
+        <p>Keep an eye on your inbox. We'll be in touch when the right role comes up.</p>
       </div>
     </div>
   </div>
@@ -294,14 +495,14 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="logo" style="color:var(--cream);"><span class="dot"></span> ZEST<span class="logo-lower">hire</span></div>
+        <a href="index.html" class="footer-logo"><img src="zest-logo-patch.png" alt="ZEST hire"></a>
         <p>Recruitment for the people who build, run and keep critical infrastructure and digital facilities alive across WA, QLD, NSW &amp; VIC.</p>
       </div>
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="index.html#pillars">Roles we place</a></li>
-          <li><a href="index.html#why-recruiter">Why ZEST?</a></li>
+          <li><a href="index.html#roles">Roles we place</a></li>
+          <li><a href="index.html#why">Why ZEST</a></li>
           <li><a href="index.html#growth">Market growth</a></li>
           <li><a href="jobs.html">Jobs board</a></li>
         </ul>
@@ -309,14 +510,14 @@
       <div>
         <h4>For employers</h4>
         <ul>
-          <li><a href="mailto:hello@zesthire.com.au">Partner with ZEST</a></li>
-          <li><a href="mailto:hello@zesthire.com.au">Request a shortlist</a></li>
+          <li><a href="mailto:hello@zesthire.com.au?subject=Partner%20with%20ZEST">Partner with ZEST</a></li>
+          <li><a href="#hire">Request a shortlist</a></li>
         </ul>
       </div>
       <div>
         <h4>Get in touch</h4>
         <ul>
-          <li>Perth, WA · Brisbane, QLD · Sydney, NSW · Melbourne, VIC</li>
+          <li>Perth · Brisbane · Sydney · Melbourne</li>
           <li><a href="mailto:hello@zesthire.com.au">hello@zesthire.com.au</a></li>
         </ul>
       </div>
