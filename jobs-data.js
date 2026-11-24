@@ -197,7 +197,7 @@ const ZEST_JOBS = [
     type: "Permanent",
     salary: "$155k – $175k + super",
     posted: "2026-08-06",
-    summary: "Own uptime and risk across mechanical, electrical and BMS systems as NEXTDC's new Port Melbourne campus ramps up to live operations."
+    summary: "Own uptime and risk across mechanical, electrical and BMS systems as a new Port Melbourne campus ramps up to live operations."
   },
   {
     id: "vic-002",
@@ -277,7 +277,7 @@ const ZEST_JOBS = [
     type: "Permanent",
     salary: "$150k – $170k + super",
     posted: "2026-08-07",
-    summary: "Own uptime and risk across mechanical, electrical and BMS systems as NEXTDC's B2 Brisbane campus doubles capacity to 12MW."
+    summary: "Own uptime and risk across mechanical, electrical and BMS systems as a Brisbane campus doubles capacity to 12MW."
   },
   {
     id: "qld-002",
