@@ -1,0 +1,53 @@
+name: Build job pages
+
+# Rebuilds /jobs/*.html (one page per live role, with Google for Jobs data)
+# from the ZEST jobs Google Sheet. Runs every 2 hours, on demand, and when
+# the builder changes.
+on:
+  schedule:
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/build_jobs.py"
+      - ".github/workflows/build-jobs.yml"
+      - "jobs.html"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: build-jobs
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build job pages from the Google Sheet
+        run: python3 tools/build_jobs.py
+      - name: Commit changes
+        id: commit
+        run: |
+          git config user.name "zest-jobs-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A jobs sitemap.xml
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No job changes."
+          else
+            git commit -m "Update job pages from Google Sheet"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Rebuild GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages will rebuild on its own."

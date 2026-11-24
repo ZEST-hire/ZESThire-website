@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <article class="job-card" data-pillar="${job.pillar}">
           <div class="job-top">
-            <h3 class="job-title">${attr(job.title)}</h3>
+            <h3 class="job-title">${jobPages[job.id] ? `<a href="${attr(jobPages[job.id])}">${attr(job.title)}</a>` : attr(job.title)}</h3>
             <span class="job-pill ${pillarClass}">${pillarLabels[job.pillar]}</span>
           </div>
           ${/bonus/i.test(job.salary + ' ' + job.summary) ? `<span class="job-bonus">🎁 ${attr((job.salary.match(/\$[\d,]+\s*sign-(?:on|up) bonus/i) || ['Sign-on bonus'])[0])}</span>` : ''}
@@ -303,7 +303,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </article>`;
     }
 
-    loadJobs().then(loaded => {
+    // Roles that have their own page (built by tools/build_jobs.py) link to it.
+    let jobPages = {};
+    const jobPagesReady = fetch('/jobs/index.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : {}).then(m => { jobPages = m || {}; }).catch(() => {});
+
+    Promise.all([loadJobs(), jobPagesReady]).then(([loaded]) => {
       // Newest roles first (by Posted Date); rows without a date keep their sheet order at the end.
       const jobsList = loaded.map((j, i) => ({ j, i }))
         .sort((a, b) => (b.j.posted || '').localeCompare(a.j.posted || '') || a.i - b.i)
